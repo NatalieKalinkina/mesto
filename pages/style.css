@@ -43,3 +43,36 @@
   width: 142px;
   height: 33px;
 }
+
+.main {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.profile {
+  padding: 36.25px 0 47.25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__person {
+  display: flex;
+  gap: 30px;
+}
+
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.profile__name {
+  font-size: 42px;
+  line-height: 1.14;
+  font-weight: 500;
+}
