@@ -17,43 +17,57 @@
         <div class="profile__person">
           <img src="images/userpic.jpg" class="profile__avatar" alt="аватар" />
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <div class="profile__first-line">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-button button"></button>
+            </div>
             <h2 class="profile__text">Исследователь океана</h2>
-            <button class="profile__edit-button button"></button>
           </div>
         </div>
         <button class="profile__add-button button"></button>
       </section>
       <section class="elements">
-        <div class="elements__card">
-          <img src="images/cyprus.jpg" class="elements__image" alt="Кипр" />
-          <p class="elements__card-title"></p>
-          <button class="elements__like"></button>
+        <div class="card">
+          <img src="images/cyprus.jpg" class="card__image" alt="Кипр" />
+          <div class="card__caption">
+            <p class="card__title">Кипр</p>
+            <button class="card__like"></button>
+          </div>
         </div>
-        <div class="elements__card">
-          <img src="images/stockholm.jpg" class="elements__image" alt="Швеция" />
-          <p class="elements__card-title"></p>
-          <button class="elements__like"></button>
+        <div class="card">
+          <img src="images/stockholm.jpg" class="card__image" alt="Швеция" />
+          <div class="card__caption">
+            <p class="card__title">Швеция</p>
+            <button class="card__like"></button>
+          </div>
         </div>
-        <div class="elements__card">
-          <img src="images/finland.jpg" class="elements__image" alt="Финляндия" />
-          <p class="elements__card-title"></p>
-          <button class="elements__like"></button>
+        <div class="card">
+          <img src="images/finland.jpg" class="card__image" alt="Финляндия" />
+          <div class="card__caption">
+            <p class="card__title">Финляндия</p>
+            <button class="card__like"></button>
+          </div>
         </div>
-        <div class="elements__card">
-          <img src="images/togliatti.jpg" class="elements__image" alt="Тольятти" />
-          <p class="elements__card-title"></p>
-          <button class="elements__like"></button>
+        <div class="card">
+          <img src="images/togliatti.jpg" class="card__image" alt="Тольятти" />
+          <div class="card__caption">
+            <p class="card__title">Тольятти</p>
+            <button class="card__like"></button>
+          </div>
         </div>
-        <div class="elements__card">
-          <img src="images/saint-petersburg.jpg" class="elements__image" alt="Санкт-Петербург" />
-          <p class="elements__card-title"></p>
-          <button class="elements__like"></button>
+        <div class="card">
+          <img src="images/saint-petersburg.jpg" class="card__image" alt="Санкт-Петербург" />
+          <div class="card__caption">
+            <p class="card__title">Санкт-Петербург</p>
+            <button class="card__like"></button>
+          </div>
         </div>
-        <div class="elements__card">
-          <img src="images/sochi.jpg" class="elements__image" alt="Сочи" />
-          <p class="elements__card-title"></p>
-          <button class="elements__like"></button>
+        <div class="card">
+          <img src="images/sochi.jpg" class="card__image" alt="Сочи" />
+          <div class="card__caption">
+            <p class="card__title">Сочи</p>
+            <button class="card__like"></button>
+          </div>
         </div>
       </section>
     </main>
@@ -63,9 +77,9 @@
     <section class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <p class="popup__name"></p>
-        <p class="popup__text"></p>
-        <button class="popup__submit button"><p class="popup__submit-text">Сохранить</p></button>
+        <p class="popup__text">Жак-Ив Кусто</p>
+        <p class="popup__text">Исследователь океана</p>
+        <button class="popup__submit"><p class="popup__submit-text">Сохранить</p></button>
         <button class="popup__close button"></button>
       </div>
     </section>
