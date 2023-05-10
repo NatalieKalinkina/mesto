@@ -43,6 +43,7 @@ section {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  position: relative;
 }
 
 .header {
@@ -191,7 +192,16 @@ section {
   background-repeat: no-repeat;
   background-size: 22px;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
+}
+
+.card__like:hover {
+  opacity: 0.5;
+}
+
+.card__like:active {
+  background-image: url(../images/like_active.svg);
+  opacity: 1;
 }
 
 .footer {
@@ -213,12 +223,14 @@ section {
   opacity: 0.6;
 }
 
-/* .popup {
-  background-color: #000;
-  opacity: 0.5;
+.popup {
+  background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
   width: 100%;
-} */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
 .popup__container {
   max-width: 430px;
@@ -228,17 +240,20 @@ section {
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   padding: 34px 36px 37px;
   box-sizing: border-box;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .popup__close {
   width: 32px;
   height: 32px;
-  background-image: url(../images/Closeicon.svg);
+  background-color: transparent;
+  background-image: url(../images/close_icon.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 32px;
-  background-color: #000;
   border: none;
   position: absolute;
   top: -40px;
@@ -264,6 +279,7 @@ section {
   padding-bottom: 13px;
   margin-bottom: 30px;
   width: 100%;
+  border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
 }
