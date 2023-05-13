@@ -1,0 +1,24 @@
+.popup__text {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+  padding-bottom: 13px;
+  margin-bottom: 30px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.popup__text:last-of-type {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__text:last-of-type {
+    margin-bottom: 45px;
+  }
+}

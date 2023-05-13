@@ -1,0 +1,19 @@
+.card {
+  min-height: 361px;
+  width: 100%;
+  max-width: 282px;
+  background-color: #fff;
+  border-radius: 3.55%;
+}
+
+@media screen and (max-width: 990px) {
+  .card {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    min-width: 282px;
+  }
+}

@@ -1,0 +1,19 @@
+.popup__submit {
+  width: 100%;
+  min-height: 50px;
+  background-color: #000000;
+  border-radius: 0.56%;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__submit {
+    min-height: 46px;
+    border-radius: 0.84%;
+  }
+}
+
+.popup__submit:hover {
+  opacity: 0.8;
+}
