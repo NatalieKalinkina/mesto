@@ -5,8 +5,8 @@ editButton.addEventListener('click', function () {
 });
 
 let formElement = document.querySelector('.popup__container');
-let nameInput = document.querySelector('.input_name');
-let jobInput = document.querySelector('.input_job');
+let nameInput = document.querySelector('.popup__name');
+let jobInput = document.querySelector('.popup__job');
 let nameProfile = document.querySelector('.profile__name');
 let jobProfile = document.querySelector('.profile__job');
 function handleFormSubmit(evt) {
