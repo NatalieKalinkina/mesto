@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css " />
-    <title>Mesto</title>
+    <title lang="en">Mesto</title>
   </head>
   <body class="page">
     <header class="header">
-      <img src="./images/logo.svg" class="header__logo" alt="логотип" />
+      <img src="./images/logo.svg" class="header__logo" alt="логотип проекта Место" />
     </header>
     <main class="main">
       <section class="profile">
@@ -18,70 +18,120 @@
           <div class="profile__info">
             <div class="profile__first-line">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button button"></button>
+              <button
+                type="button"
+                class="profile__edit-button button"
+                aria-label="Редактировать профиль"
+              ></button>
             </div>
-            <h2 class="profile__job">Исследователь океана</h2>
+            <p class="profile__job">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button button"></button>
+        <button
+          type="button"
+          class="profile__add-button button"
+          aria-label="Добавить фото"
+        ></button>
       </section>
-      <section class="elements">
+      <section class="elements" aria-label="Секция с фотографиями">
         <div class="card">
           <img src="images/saint-petersburg.jpg" class="card__image" alt="Санкт-Петербург" />
           <div class="card__caption">
-            <p class="card__title">Санкт-Петербург</p>
-            <button class="card__like"></button>
+            <h2 class="card__title">Санкт-Петербург</h2>
+            <button
+              type="button"
+              class="card__like-button card__like-button_active"
+              aria-label="Поставить/снять 'лайк'"
+            ></button>
           </div>
         </div>
         <div class="card">
           <img src="images/sochi.jpg" class="card__image" alt="Сочи" />
           <div class="card__caption">
-            <p class="card__title">Сочи</p>
-            <button class="card__like"></button>
+            <h2 class="card__title">Сочи</h2>
+            <button
+              type="button"
+              class="card__like-button card__like-button_active"
+              aria-label="Поставить/снять 'лайк'"
+            ></button>
           </div>
         </div>
         <div class="card">
           <img src="images/togliatti.jpg" class="card__image" alt="Тольятти" />
           <div class="card__caption">
-            <p class="card__title">Тольятти</p>
-            <button class="card__like"></button>
+            <h2 class="card__title">Тольятти</h2>
+            <button
+              type="button"
+              class="card__like-button card__like-button_active"
+              aria-label="Поставить/снять 'лайк'"
+            ></button>
           </div>
         </div>
         <div class="card">
           <img src="images/samara.jpg" class="card__image" alt="Самара" />
           <div class="card__caption">
-            <p class="card__title">Самара</p>
-            <button class="card__like"></button>
+            <h2 class="card__title">Самара</h2>
+            <button
+              type="button"
+              class="card__like-button card__like-button_active"
+              aria-label="Поставить/снять 'лайк'"
+            ></button>
           </div>
         </div>
         <div class="card">
           <img src="images/moscow.jpg" class="card__image" alt="Москва" />
           <div class="card__caption">
-            <p class="card__title">Москва</p>
-            <button class="card__like"></button>
+            <h2 class="card__title">Москва</h2>
+            <button
+              type="button"
+              class="card__like-button card__like-button_active"
+              aria-label="Поставить/снять 'лайк'"
+            ></button>
           </div>
         </div>
         <div class="card">
           <img src="images/kazan.jpg" class="card__image" alt="Казань" />
           <div class="card__caption">
-            <p class="card__title">Казань</p>
-            <button class="card__like"></button>
+            <h2 class="card__title">Казань</h2>
+            <button
+              type="button"
+              class="card__like-button card__like-button_active"
+              aria-label="Поставить/снять 'лайк'"
+            ></button>
           </div>
         </div>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+      <p lang="en" class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
-    <section class="popup">
-      <form class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__name" value="Жак-Ив Кусто" />
-        <input type="text" class="popup__job" value="Исследователь океана" />
-        <button class="popup__submit"><p class="popup__submit-text">Сохранить</p></button>
-        <button class="popup__close button"></button>
-      </form>
-    </section>
-    <script src="index.js"></script>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="popup__form" name="formProfile">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input
+            type="text"
+            class="popup__text popup__text_type_name"
+            value="Жак-Ив Кусто"
+            name="nameProfile"
+            placeholder="Введите имя"
+          />
+          <input
+            type="text"
+            class="popup__text popup__text_type_job"
+            value="Исследователь океана"
+            name="jobProfile"
+            placeholder="Введите профессию"
+          />
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+          <button
+            type="button"
+            class="popup__close-button button"
+            aria-label="Закрыть окно редактирования"
+          ></button>
+        </form>
+      </div>
+    </div>
+    <script src="scripts/index.js" defer></script>
   </body>
 </html>

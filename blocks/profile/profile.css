@@ -9,6 +9,6 @@
   .profile {
     padding: 42px 0 36px;
     flex-direction: column;
-    gap: 36px;
+    gap: 32px;
   }
 }
