@@ -9,6 +9,8 @@ let closeButton = document.querySelector('.popup__close-button');
 
 function popupOpen() {
   popup.classList.add('popup_opened');
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
 }
 
 function popupClose() {
