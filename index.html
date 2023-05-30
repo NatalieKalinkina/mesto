@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css " />
+    <script src="scripts/cards.js" defer></script>
+    <script src="scripts/index.js" defer></script>
     <title lang="en">Mesto</title>
   </head>
   <body class="page">
@@ -48,6 +50,7 @@
             value="Жак-Ив Кусто"
             name="nameProfile"
             placeholder="Введите имя"
+            required
           />
           <input
             type="text"
@@ -55,6 +58,7 @@
             value="Исследователь океана"
             name="jobProfile"
             placeholder="Введите профессию"
+            required
           />
           <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
@@ -82,13 +86,15 @@
             value=""
             name="imageName"
             placeholder="Название"
+            required
           />
           <input
-            type="text"
+            type="url"
             class="popup__text popup__text_type_image-src"
             value=""
             name="imageSrc"
             placeholder="Ссылка на картинку"
+            required
           />
           <button type="submit" class="popup__submit-button">Создать</button>
         </form>
@@ -136,7 +142,5 @@
         </div>
       </div>
     </template>
-
-    <script src="scripts/index.js" defer></script>
   </body>
 </html>
