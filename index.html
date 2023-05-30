@@ -20,7 +20,7 @@
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button
                 type="button"
-                class="profile__edit-button button"
+                class="profile__edit-button open-button button"
                 aria-label="Редактировать профиль"
               ></button>
             </div>
@@ -29,86 +29,19 @@
         </div>
         <button
           type="button"
-          class="profile__add-button button"
+          class="profile__add-button open-button button"
           aria-label="Добавить фото"
         ></button>
       </section>
-      <section class="elements" aria-label="Секция с фотографиями">
-        <div class="card">
-          <img src="images/saint-petersburg.jpg" class="card__image" alt="Санкт-Петербург" />
-          <div class="card__caption">
-            <h2 class="card__title">Санкт-Петербург</h2>
-            <button
-              type="button"
-              class="card__like-button"
-              aria-label="Поставить/снять 'лайк'"
-            ></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/sochi.jpg" class="card__image" alt="Сочи" />
-          <div class="card__caption">
-            <h2 class="card__title">Сочи</h2>
-            <button
-              type="button"
-              class="card__like-button"
-              aria-label="Поставить/снять 'лайк'"
-            ></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/togliatti.jpg" class="card__image" alt="Тольятти" />
-          <div class="card__caption">
-            <h2 class="card__title">Тольятти</h2>
-            <button
-              type="button"
-              class="card__like-button"
-              aria-label="Поставить/снять 'лайк'"
-            ></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/samara.jpg" class="card__image" alt="Самара" />
-          <div class="card__caption">
-            <h2 class="card__title">Самара</h2>
-            <button
-              type="button"
-              class="card__like-button"
-              aria-label="Поставить/снять 'лайк'"
-            ></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/moscow.jpg" class="card__image" alt="Москва" />
-          <div class="card__caption">
-            <h2 class="card__title">Москва</h2>
-            <button
-              type="button"
-              class="card__like-button"
-              aria-label="Поставить/снять 'лайк'"
-            ></button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/kazan.jpg" class="card__image" alt="Казань" />
-          <div class="card__caption">
-            <h2 class="card__title">Казань</h2>
-            <button
-              type="button"
-              class="card__like-button"
-              aria-label="Поставить/снять 'лайк'"
-            ></button>
-          </div>
-        </div>
-      </section>
+      <section class="elements" aria-label="Секция с фотографиями"></section>
     </main>
     <footer class="footer">
       <p lang="en" class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup" id="popup_profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="formProfile">
+        <form class="popup__form" name="formProfile" autocomplete="off" id="popup_form-edit">
           <input
             type="text"
             class="popup__text popup__text_type_name"
@@ -129,9 +62,81 @@
           type="button"
           class="popup__close-button button"
           aria-label="Закрыть окно редактирования"
+          id="profile-edit_close-button"
         ></button>
       </div>
     </div>
+
+    <div class="popup" id="popup_image">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form
+          class="popup__form form-image"
+          name="formImage"
+          autocomplete="off"
+          id="popup_form-add"
+        >
+          <input
+            type="text"
+            class="popup__text popup__text_type_image-name"
+            value=""
+            name="imageName"
+            placeholder="Название"
+          />
+          <input
+            type="text"
+            class="popup__text popup__text_type_image-src"
+            value=""
+            name="imageSrc"
+            placeholder="Ссылка на картинку"
+          />
+          <button type="submit" class="popup__submit-button">Создать</button>
+        </form>
+        <button
+          type="button"
+          class="popup__close-button button"
+          aria-label="Закрыть окно добавления карточки"
+          id="card-add_close-button"
+        ></button>
+      </div>
+    </div>
+
+    <div class="popup bigImagePopup" id="popup_image-big">
+      <figure class="bigImagePopup__container">
+        <img
+          src="https://images.unsplash.com/photo-1549092156-04ee20673b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
+          class="bigImagePopup__image"
+          alt="Здесь должна быть картинка"
+        />
+        <figcaption class="bigImagePopup__caption">Здесь должна быть картинка</figcaption>
+        <button
+          type="button"
+          class="popup__close-button button"
+          aria-label="Закрыть фото"
+          id="big-image_close-button"
+        ></button>
+      </figure>
+    </div>
+
+    <template id="card-template">
+      <div class="card">
+        <img
+          src="https://images.unsplash.com/photo-1549092156-04ee20673b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
+          class="card__image"
+          alt="Здесь должна быть картинка"
+        />
+        <button type="button" class="card__delete-button" aria-label="Удалить карточку"></button>
+        <div class="card__caption">
+          <h2 class="card__title">Название карточки</h2>
+          <button
+            type="button"
+            class="card__like-button"
+            aria-label="Поставить/снять 'лайк'"
+          ></button>
+        </div>
+      </div>
+    </template>
+
     <script src="scripts/index.js" defer></script>
   </body>
 </html>
