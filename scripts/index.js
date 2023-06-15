@@ -21,6 +21,7 @@ const addButton = document.querySelector('.profile__add-button');
 const closeProfile = document.querySelector('#profile-edit_close-button');
 const closeCardAdd = document.querySelector('#card-add_close-button');
 const closeBigImage = document.querySelector('#big-image_close-button');
+const profileSubmitButton = document.querySelector('#profile-submit-button');
 
 initialCards.forEach(function (item) {
   const newCard = createCard(item);
@@ -64,10 +65,26 @@ function renderCard(item) {
 
 function openPopup(popupList) {
   popupList.classList.add('popup_opened');
+  document.body.addEventListener('keydown', closeByEsc);
+  document.querySelector('.popup_opened').addEventListener('click', closeByOverlay);
 }
 
 function closePopup(popupList) {
+  document.body.removeEventListener('keydown', closeByEsc);
+  document.querySelector('.popup_opened').removeEventListener('click', closeByOverlay);
   popupList.classList.remove('popup_opened');
+}
+
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+function closeByOverlay(evt) {
+  if (evt.currentTarget === evt.target) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
 }
 
 function profileFormSubmit(evt) {
@@ -85,7 +102,6 @@ cardFormEl.addEventListener('submit', function (event) {
   const newCard = createCard(item);
   renderCard(newCard);
   closePopup(popupAddCard);
-  cardFormEl.reset();
 });
 
 profileFormEl.addEventListener('submit', profileFormSubmit);
@@ -94,10 +110,17 @@ editButton.addEventListener('click', function () {
   openPopup(popupProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
+  hideInputError(profileFormEl, nameInput);
+  hideInputError(profileFormEl, jobInput);
+  profileSubmitButton.classList.remove('popup__submit-button_inactive');
+  profileSubmitButton.removeAttribute('disabled');
 });
 
 addButton.addEventListener('click', function () {
   openPopup(popupAddCard);
+  cardFormEl.reset();
+  hideInputError(cardFormEl, imageSrcInput);
+  hideInputError(cardFormEl, imageNameInput);
 });
 
 closeProfile.addEventListener('click', function () {

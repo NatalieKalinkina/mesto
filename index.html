@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css " />
     <script src="scripts/cards.js" defer></script>
+    <script src="scripts/validation.js" defer></script>
     <script src="scripts/index.js" defer></script>
+
     <title lang="en">Mesto</title>
   </head>
   <body class="page">
@@ -43,24 +45,40 @@
     <div class="popup" id="popup_profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="formProfile" autocomplete="off" id="popup_form-edit">
+        <form
+          class="popup__form"
+          name="formProfile"
+          autocomplete="off"
+          id="popup_form-edit"
+          novalidate
+        >
           <input
             type="text"
             class="popup__text popup__text_type_name"
             value="Жак-Ив Кусто"
             name="nameProfile"
+            id="name-input"
             placeholder="Введите имя"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <p class="popup__text-error name-input-error"></p>
           <input
             type="text"
             class="popup__text popup__text_type_job"
             value="Исследователь океана"
             name="jobProfile"
+            id="job-input"
             placeholder="Введите профессию"
+            minlength="2"
+            maxlength="200"
             required
           />
-          <button type="submit" class="popup__submit-button">Сохранить</button>
+          <p class="popup__text-error job-input-error"></p>
+          <button type="submit" class="popup__submit-button" id="profile-submit-button">
+            Сохранить
+          </button>
         </form>
         <button
           type="button"
@@ -79,6 +97,7 @@
           name="formImage"
           autocomplete="off"
           id="popup_form-add"
+          novalidate
         >
           <input
             type="text"
@@ -86,16 +105,22 @@
             value=""
             name="imageName"
             placeholder="Название"
+            id="place-input"
             required
+            minlength="2"
+            maxlength="30"
           />
+          <p class="popup__text-error place-input-error"></p>
           <input
             type="url"
             class="popup__text popup__text_type_image-src"
             value=""
             name="imageSrc"
             placeholder="Ссылка на картинку"
+            id="url-input"
             required
           />
+          <p class="popup__text-error url-input-error"></p>
           <button type="submit" class="popup__submit-button">Создать</button>
         </form>
         <button
