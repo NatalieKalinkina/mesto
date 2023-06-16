@@ -18,10 +18,9 @@ const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const closeProfile = document.querySelector('#profile-edit_close-button');
-const closeCardAdd = document.querySelector('#card-add_close-button');
-const closeBigImage = document.querySelector('#big-image_close-button');
 const profileSubmitButton = document.querySelector('#profile-submit-button');
+const imageSubmitButton = document.querySelector('#image-submit-button');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 
 initialCards.forEach(function (item) {
   const newCard = createCard(item);
@@ -83,11 +82,11 @@ function closeByEsc(evt) {
 
 function closeByOverlay(evt) {
   if (evt.currentTarget === evt.target) {
-    closePopup(document.querySelector('.popup_opened'));
+    closePopup(evt.target);
   }
 }
 
-function profileFormSubmit(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
@@ -104,7 +103,7 @@ cardFormEl.addEventListener('submit', function (event) {
   closePopup(popupAddCard);
 });
 
-profileFormEl.addEventListener('submit', profileFormSubmit);
+profileFormEl.addEventListener('submit', submitProfileForm);
 
 editButton.addEventListener('click', function () {
   openPopup(popupProfile);
@@ -121,16 +120,11 @@ addButton.addEventListener('click', function () {
   cardFormEl.reset();
   hideInputError(cardFormEl, imageSrcInput);
   hideInputError(cardFormEl, imageNameInput);
+  imageSubmitButton.classList.add('popup__submit-button_inactive');
+  imageSubmitButton.setAttribute('disabled', true);
 });
 
-closeProfile.addEventListener('click', function () {
-  closePopup(popupProfile);
-});
-
-closeCardAdd.addEventListener('click', function () {
-  closePopup(popupAddCard);
-});
-
-closeBigImage.addEventListener('click', function () {
-  closePopup(popupBigImage);
+closeButtons.forEach(button => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
 });
