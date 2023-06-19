@@ -8,14 +8,14 @@ const settings = {
   errorId: '-error'
 };
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
   inputElement.classList.add(settings.inputErrorClass);
   const errorElement = formElement.querySelector(`.${inputElement.id + settings.errorId}`);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(settings.errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, settings) => {
   inputElement.classList.remove(settings.inputErrorClass);
   const errorElement = formElement.querySelector(`.${inputElement.id + settings.errorId}`);
   errorElement.classList.remove(settings.errorClass);
@@ -36,7 +36,7 @@ const hasInvalidInput = inputList => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(settings.inactiveButtonClass);
     buttonElement.setAttribute('disabled', 'true');
@@ -54,8 +54,8 @@ const setEventListeners = (formElement, settings) => {
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      checkInputValidity(formElement, inputElement, settings);
+      toggleButtonState(inputList, buttonElement, settings);
     });
   });
 };

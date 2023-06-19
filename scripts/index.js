@@ -109,8 +109,8 @@ editButton.addEventListener('click', function () {
   openPopup(popupProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  hideInputError(profileFormEl, nameInput);
-  hideInputError(profileFormEl, jobInput);
+  hideInputError(profileFormEl, nameInput, settings);
+  hideInputError(profileFormEl, jobInput, settings);
   profileSubmitButton.classList.remove('popup__submit-button_inactive');
   profileSubmitButton.removeAttribute('disabled');
 });
@@ -118,8 +118,8 @@ editButton.addEventListener('click', function () {
 addButton.addEventListener('click', function () {
   openPopup(popupAddCard);
   cardFormEl.reset();
-  hideInputError(cardFormEl, imageSrcInput);
-  hideInputError(cardFormEl, imageNameInput);
+  hideInputError(cardFormEl, imageSrcInput, settings);
+  hideInputError(cardFormEl, imageNameInput, settings);
   imageSubmitButton.classList.add('popup__submit-button_inactive');
   imageSubmitButton.setAttribute('disabled', true);
 });
