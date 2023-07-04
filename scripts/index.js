@@ -1,3 +1,6 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
 const template = document.querySelector('#card-template');
 const templateContent = template.content;
 const cardEl = templateContent.querySelector('.card');
@@ -22,45 +25,49 @@ const profileSubmitButton = document.querySelector('#profile-submit-button');
 const imageSubmitButton = document.querySelector('#image-submit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
-initialCards.forEach(function (item) {
-  const newCard = createCard(item);
-  renderCard(newCard);
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__text',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__text_type_error',
+  errorClass: 'popup__text-error_active',
+  errorId: '-error'
+};
+
+initialCards.forEach(item => {
+  const card = new Card(item, '#card-template');
+  const cardElement = card.createCard();
+
+  document.querySelector('.elements').append(cardElement);
 });
-
-function createCard(item) {
-  const newCard = cardEl.cloneNode(true);
-
-  const titleEl = newCard.querySelector('.card__title');
-  titleEl.textContent = item.name;
-
-  const imageEl = newCard.querySelector('.card__image');
-
-  imageEl.alt = item.name;
-  imageEl.src = item.link;
-
-  imageEl.addEventListener('click', function () {
-    bigImageEl.src = imageEl.src;
-    bigCaptionEl.textContent = titleEl.textContent;
-    bigImageEl.alt = titleEl.textContent;
-    openPopup(popupBigImage);
-  });
-
-  const likeButton = newCard.querySelector('.card__like-button');
-  likeButton.addEventListener('click', function () {
-    likeButton.classList.toggle('card__like-button_active');
-  });
-
-  const deleteButton = newCard.querySelector('.card__delete-button');
-  deleteButton.addEventListener('click', function () {
-    newCard.remove();
-  });
-
-  return newCard;
-}
-
-function renderCard(item) {
-  cardsContainerEl.prepend(item);
-}
 
 function openPopup(popupList) {
   popupList.classList.add('popup_opened');
@@ -98,8 +105,11 @@ cardFormEl.addEventListener('submit', function (event) {
   const item = {};
   item.name = imageNameInput.value;
   item.link = imageSrcInput.value;
-  const newCard = createCard(item);
-  renderCard(newCard);
+  item.alt = imageNameInput.value;
+  const card = new Card(item, '#card-template');
+  const cardElement = card.createCard();
+  document.querySelector('.elements').prepend(cardElement);
+
   closePopup(popupAddCard);
 });
 
@@ -109,8 +119,8 @@ editButton.addEventListener('click', function () {
   openPopup(popupProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  hideInputError(profileFormEl, nameInput, settings);
-  hideInputError(profileFormEl, jobInput, settings);
+  profileFormValidate._hideInputError(nameInput);
+  profileFormValidate._hideInputError(jobInput);
   profileSubmitButton.classList.remove('popup__submit-button_inactive');
   profileSubmitButton.removeAttribute('disabled');
 });
@@ -118,8 +128,8 @@ editButton.addEventListener('click', function () {
 addButton.addEventListener('click', function () {
   openPopup(popupAddCard);
   cardFormEl.reset();
-  hideInputError(cardFormEl, imageSrcInput, settings);
-  hideInputError(cardFormEl, imageNameInput, settings);
+  cardFormValidate._hideInputError(imageSrcInput);
+  cardFormValidate._hideInputError(imageNameInput);
   imageSubmitButton.classList.add('popup__submit-button_inactive');
   imageSubmitButton.setAttribute('disabled', true);
 });
@@ -128,3 +138,9 @@ closeButtons.forEach(button => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+
+const profileFormValidate = new FormValidator(settings, profileFormEl);
+profileFormValidate.enableValidation();
+
+const cardFormValidate = new FormValidator(settings, cardFormEl);
+cardFormValidate.enableValidation();
