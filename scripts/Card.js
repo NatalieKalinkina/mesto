@@ -1,3 +1,5 @@
+import { openPopup } from './utils.js';
+
 export class Card {
   constructor(data, templateSelector) {
     this._templateSelector = templateSelector;
@@ -7,7 +9,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector('#card-template')
+      .querySelector(this._templateSelector)
       .content.querySelector('.card')
       .cloneNode(true);
 
@@ -34,26 +36,10 @@ export class Card {
   }
 
   _openBigImage() {
-    document.querySelector('#popup_image-big').classList.add('popup_opened');
+    openPopup(document.querySelector('#popup_image-big'));
     document.querySelector('.bigImagePopup__image').src = this._link;
     document.querySelector('.bigImagePopup__caption').textContent = this._name;
     document.querySelector('.bigImagePopup__image').alt = this._name;
-
-    document.body.addEventListener('keydown', evt => {
-      if (evt.key === 'Escape') {
-        this._closeBigImage();
-      }
-    });
-
-    document.querySelector('.popup_opened').addEventListener('click', evt => {
-      if (evt.currentTarget === evt.target) {
-        this._closeBigImage();
-      }
-    });
-  }
-
-  _closeBigImage() {
-    document.querySelector('#popup_image-big').classList.remove('popup_opened');
   }
 
   _setEventListeners() {
