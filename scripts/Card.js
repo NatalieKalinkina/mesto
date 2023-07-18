@@ -1,9 +1,10 @@
+import { openPopup } from './utils.js';
+
 export class Card {
-  constructor({ data, handleCardClick }, templateSelector) {
+  constructor(data, templateSelector) {
     this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
-    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -34,6 +35,13 @@ export class Card {
     this._element.remove();
   }
 
+  _openBigImage() {
+    openPopup(document.querySelector('#popup_image-big'));
+    document.querySelector('.bigImagePopup__image').src = this._link;
+    document.querySelector('.bigImagePopup__caption').textContent = this._name;
+    document.querySelector('.bigImagePopup__image').alt = this._name;
+  }
+
   _setEventListeners() {
     this._element.querySelector('.card__like-button').addEventListener('click', () => {
       this._likeCard();
@@ -44,7 +52,7 @@ export class Card {
     });
 
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleCardClick();
+      this._openBigImage();
     });
   }
 }
