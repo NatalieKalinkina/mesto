@@ -4,23 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
-    <script type="module" src="./pages/index.js"></script>
+    <link rel="stylesheet" href="./pages/index.css " />
+    <script type="module" src="scripts/index.js"></script>
 
     <title lang="en">Mesto</title>
   </head>
   <body class="page">
     <header class="header">
-      <img
-        src="<%=require('./images/logo.svg')%>"
-        class="header__logo"
-        alt="логотип проекта Место"
-      />
+      <img src="./images/logo.svg" class="header__logo" alt="логотип проекта Место" />
     </header>
     <main class="main">
       <section class="profile">
         <div class="profile__person">
-          <img src="<%=require('./images/userpic.jpg')%>" class="profile__avatar" alt="аватар" />
+          <img src="images/userpic.jpg" class="profile__avatar" alt="аватар" />
           <div class="profile__info">
             <div class="profile__first-line">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -57,8 +53,8 @@
           <input
             type="text"
             class="popup__text popup__text_type_name"
-            value=""
-            name="name"
+            value="Жак-Ив Кусто"
+            name="nameProfile"
             id="name-input"
             placeholder="Введите имя"
             required
@@ -69,8 +65,8 @@
           <input
             type="text"
             class="popup__text popup__text_type_job"
-            value=""
-            name="job"
+            value="Исследователь океана"
+            name="jobProfile"
             id="job-input"
             placeholder="Введите профессию"
             minlength="2"
@@ -105,7 +101,7 @@
             type="text"
             class="popup__text popup__text_type_image-name"
             value=""
-            name="name"
+            name="imageName"
             placeholder="Название"
             id="place-input"
             required
@@ -117,7 +113,7 @@
             type="url"
             class="popup__text popup__text_type_image-src"
             value=""
-            name="link"
+            name="imageSrc"
             placeholder="Ссылка на картинку"
             id="url-input"
             required
