@@ -1,37 +1,13 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const cardsContainerEl = '.elements';
 const cardFormEl = document.querySelector('#popup_form-add');
 const profileFormEl = document.querySelector('#popup_form-edit');
+const avatarFormEl = document.querySelector('#popup_form-avatar');
 const nameInput = document.querySelector('.popup__text_type_name');
-const jobInput = document.querySelector('.popup__text_type_job');
+const aboutInput = document.querySelector('.popup__text_type_about');
+const avatarInput = document.querySelector('.popup__text_type_avatar');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
+const avatarEditButton = document.querySelector('.profile__edit-avatar');
 
 const settings = {
   formSelector: '.popup__form',
@@ -43,4 +19,16 @@ const settings = {
   errorId: '-error'
 };
 
-export {initialCards, cardsContainerEl, cardFormEl, profileFormEl, nameInput, jobInput, editButton, addButton, settings}
+export {
+  cardsContainerEl,
+  cardFormEl,
+  profileFormEl,
+  avatarFormEl,
+  nameInput,
+  aboutInput,
+  avatarInput,
+  editButton,
+  addButton,
+  avatarEditButton,
+  settings
+};
