@@ -31,18 +31,14 @@ const userInfo = new UserInfo({
 
 let userId;
 
-function getUserData() {
-  api
-    .getUserInfo()
-    .then(userData => {
-      userInfo.setUserInfo(userData);
-      userInfo.setUserAvatar(userData);
-      userId = userData._id;
-    })
-    .catch(err => console.error(err));
-}
-
-getUserData();
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    userId = userData._id;
+    cardList.renderItems(initialCards);
+  })
+  .catch(err => console.error(err));
 
 const createCard = data => {
   const card = new Card(
@@ -58,7 +54,6 @@ const createCard = data => {
         api
           .addLike(data._id)
           .then(data => {
-            console.log(data.likes.length);
             card.updateLikeCounter(data.likes.length);
             card.likeCard();
           })
@@ -68,7 +63,6 @@ const createCard = data => {
         api
           .deleteLike(data._id)
           .then(data => {
-            console.log(data.likes.length);
             card.updateLikeCounter(data.likes.length);
             card.dislikeCard();
           })
@@ -78,7 +72,7 @@ const createCard = data => {
     userId,
     '#card-template'
   );
-  return card;
+  return card.createCard();
 };
 
 const popupDeleteConfirmation = new PopupConfirmation('#popup_confirmation', {
@@ -135,8 +129,7 @@ const cardList = new Section(
   {
     renderer: item => {
       const card = createCard(item);
-      const cardElement = card.createCard();
-      cardList.addItem(cardElement);
+      cardList.addItem(card);
     }
   },
   cardsContainerEl
@@ -149,8 +142,7 @@ const popupAddCard = new PopupWithForm('#popup_image', {
       .postNewCard(formData)
       .then(data => {
         const card = createCard(data);
-        const cardElement = card.createCard();
-        cardList.addItem(cardElement);
+        cardList.addItem(card);
         popupAddCard.close();
       })
       .catch(err => console.error(err))
@@ -164,17 +156,6 @@ popupAddCard.setEventListeners();
 const popupBigImage = new PopupWithImage('#popup_image-big');
 popupBigImage.setEventListeners();
 
-function getInitialCards() {
-  api
-    .getInitialCards()
-    .then(initialCards => {
-      cardList.renderItems(initialCards);
-    })
-    .catch(err => console.error(err));
-}
-
-getInitialCards();
-
 editButton.addEventListener('click', () => {
   popupProfile.open();
   const userData = userInfo.getUserInfo();
@@ -187,15 +168,12 @@ editButton.addEventListener('click', () => {
 
 avatarEditButton.addEventListener('click', () => {
   popupAvatar.open();
-  avatarInput.value = document.querySelector('.profile__avatar').src;
-
   avatarFormValidate.resetError();
   avatarFormValidate.deactivateSubmitButton();
 });
 
 addButton.addEventListener('click', () => {
   popupAddCard.open();
-  cardFormEl.reset();
   cardFormValidate.resetError();
   cardFormValidate.activateSubmitButton();
 });
