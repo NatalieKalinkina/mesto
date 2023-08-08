@@ -163,7 +163,7 @@ editButton.addEventListener('click', () => {
   aboutInput.value = userData.about;
 
   profileFormValidate.resetError();
-  profileFormValidate.deactivateSubmitButton();
+  profileFormValidate.activateSubmitButton();
 });
 
 avatarEditButton.addEventListener('click', () => {
@@ -175,7 +175,7 @@ avatarEditButton.addEventListener('click', () => {
 addButton.addEventListener('click', () => {
   popupAddCard.open();
   cardFormValidate.resetError();
-  cardFormValidate.activateSubmitButton();
+  cardFormValidate.deactivateSubmitButton();
 });
 
 const profileFormValidate = new FormValidator(settings, profileFormEl);
